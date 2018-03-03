@@ -1,30 +1,45 @@
 import math
 
-
-def calculate_entropy_single(x):
-    return -(x)*math.log(x, 2)
-
-def calculate_entropy_from_array(x):
+def calculate_entropy(x, opt):
     result=[]
-    for i in x:
-        h = -(i)*(math.log(i, 2))
-        result.append(h)
-    return sum(entropies)
+    if opt == 'single':
+        return -(x)*math.log(x, 2)
+    elif opt == 'array':
+        for i in x:
+            h = -(i)*(math.log(i, 2))
+            result.append(h)
+        return sum(entropies)
+    else:
+        print('opt should be either \'single\' or \'array\'')
+        return 0
 
-def conditional_entropy(x, y, opt='conditional'):
+def conditional_entropy(x, y, opt):
     result = []
-    if opt == 'joint':
-        for i in len(x):
+    if opt == 'single_joint':
+        return x*math.log(y/x, 2)
+    elif opt == 'single_conditional':
+        return y*x*math.log(x, 2)
+    elif opt == 'array_joint':
+        for i in range(len(x)):
             h = x[i]*(math.log(y[i]/x[i], 2))
             result.append(h)
-    return sum(entropies)        
+    elif opt == 'array_conditional':
+        for i in range(len(x)):
+            h = -y[i]*x[i]*math.log(x[i], 2)
+            result.append(h)
+    else:
+        print('opt should be either \'single_conditional\',\'single_joint\'\
+              or \'array_conditional\', \'array_conditional\'')
+    return sum(result)        
 
-def mutual_info_probability(x, y, opt=''):
-    p, q = 0, 0
-    p = calculate_entropy(x)
-    q = calculate_entropy(y)
-    if opt == 'conditional':
-        i = p - q
+def mutual_info(x, y, joint, opt):
+    if opt == 'single':
+        return joint*math.log(joint/(x*y), 2)
+    elif opt == 'array':
+        result = []
+        for i in range(len(x)):
+            result.append(joint[i]*math.log(joint[i]/(x[i]*y[i]), 2))
+        return sum(result)
 
 
 

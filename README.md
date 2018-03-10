@@ -36,3 +36,10 @@ y represents a single probability or an array of prababilities of P(X) or P(Y)
 Here, for this choice opt has 2 options:
 opt = 'single_joint' if passing single values of probabilities
 opt = 'array_joint' if passing array of probabilities
+
+3. Relative Entropy
+D (P || Q) = sum ( P(X=a) log (p(X=a) / P (Y = a))
+Func - relative_entropy(p, q, opt)
+here p and q are the two variables  P(X) and P(Y)
+p and q arguments can be either single probability value or an array of probabilities of X and Y
+opt can be correspondingly 'single' or 'array'

@@ -41,6 +41,17 @@ def mutual_info(x, y, joint, opt):
             result.append(joint[i]*math.log(joint[i]/(x[i]*y[i]), 2))
         return sum(result)
 
+def relative_probability(p, q, opt):
+    result = []
+    if opt == 'single':
+        return p*math.log(p/q, 2)
+    elif opt == 'array':
+        for i in range(len(p)):
+            h = p[i]*math.log(p[i]/q[i], 2)
+            result.append(h)
+        return sum(result)
+    else:
+        print('opt should have value either \'single\' or \'array\'')
 
 
     

@@ -41,7 +41,7 @@ def mutual_info(x, y, joint, opt):
             result.append(joint[i]*math.log(joint[i]/(x[i]*y[i]), 2))
         return sum(result)
 
-def relative_probability(p, q, opt):
+def relative_entropy(p, q, opt):
     result = []
     if opt == 'single':
         return p*math.log(p/q, 2)
